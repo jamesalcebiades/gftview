@@ -28,12 +28,15 @@ stages:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
+    - download: current
     - task: Kubernetes@1
       inputs:
         connectionType: 'Azure Resource Manager'
         azureSubscriptionEndpoint: 'Pay-As-You-Go(bba12a48-76de-4498-b0bf-77e7ce1d2b58)'
         azureResourceGroup: '$(resource_name)-$(env)-$(count)'
         kubernetesCluster: '$(aks_name)-$(env)-$(count)'
+        namespace: 'default'
         command: 'create'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'Pay-As-You-Go(bba12a48-76de-4498-b0bf-77e7ce1d2b58)'
