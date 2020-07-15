@@ -6,13 +6,17 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'vs2017-win2016'
-
-steps:
-- task: ResourceGroupCreation@1
-  inputs:
-    ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
-    ConnectedServiceNameARM: 'Pay-As-You-Go(bba12a48-76de-4498-b0bf-77e7ce1d2b58)'
-    ResourceGroupName: '$(resource_name)-$(env)-$(count)'
-    ResourceLocation: 'Brazil South'
+stages:
+- stage: 'Resourcegroup'
+  displayName: 'Resource group'
+  jobs:
+  - job: 'Resourcegroup'
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+    - task: ResourceGroupCreation@1
+      inputs:
+        ConnectedServiceNameSelector: 'ConnectedServiceNameARM'
+        ConnectedServiceNameARM: 'Pay-As-You-Go(bba12a48-76de-4498-b0bf-77e7ce1d2b58)'
+        ResourceGroupName: '$(resource_name)-$(env)-$(count)'
+        ResourceLocation: 'Brazil South'
