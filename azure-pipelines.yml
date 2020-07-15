@@ -7,10 +7,10 @@ trigger:
 - master
 
 stages:
-- stage: 'Resourcegroup'
-  displayName: 'Create Resource Group'
+- stage: 'Deploy Infra'
+  displayName: 'Deploy stage Infra'
   jobs:
-  - job: 'Resourcegroup'
+  - job: 'ResourceGroup'
     pool:
       vmImage: 'vs2017-win2016'
     steps:
@@ -20,7 +20,13 @@ stages:
         ConnectedServiceNameARM: 'Pay-As-You-Go(bba12a48-76de-4498-b0bf-77e7ce1d2b58)'
         ResourceGroupName: '$(resource_name)-$(env)-$(count)'
         ResourceLocation: 'Brazil South'
-      
+  - job: 'Kuberneters'
+    pool:
+       vmImage: 'ubuntu-16.04'
+    steps:
+    
+
+
 - stage: 'AKSregistre'
   displayName: 'Deploy AKS Registre'
   jobs:
