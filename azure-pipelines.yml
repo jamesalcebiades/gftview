@@ -8,7 +8,7 @@ trigger:
 
 stages:
 - stage: 'Resourcegroup'
-  displayName: 'Resource group'
+  displayName: 'Create Resource Group'
   jobs:
   - job: 'Resourcegroup'
     pool:
@@ -24,7 +24,7 @@ stages:
 - stage: 'AKSregistre'
   displayName: 'AKS Registre'
   jobs:
-  - job: 'aks'
+  - job: 'Deploy AKS'
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
