@@ -22,9 +22,9 @@ stages:
         ResourceLocation: 'Brazil South'
       
 - stage: 'AKSregistre'
-  displayName: 'AKS Registre'
+  displayName: 'Deploy AKS Registre'
   jobs:
-  - job: 'Deploy AKS'
+  - job: 'Deploy'
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
